@@ -1,0 +1,227 @@
+/* Import a modern font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Quicksand:wght@500;700&display=swap');
+
+/* Musical background with animated notes */
+body {
+  background: linear-gradient(120deg, #23272f 70%, #ffe0b2 100%);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.home-bg-notes {
+  position: absolute;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.note {
+  position: absolute;
+  font-size: 2.5rem;
+  opacity: 0.18;
+  animation: floatNotes 8s linear infinite;
+}
+
+.note1 { left: 10%; top: 15%; animation-delay: 0s; }
+.note2 { left: 80%; top: 25%; animation-delay: 2s; }
+.note3 { left: 40%; top: 70%; animation-delay: 1s; }
+.note4 { left: 60%; top: 50%; animation-delay: 3s; }
+.note5 { left: 25%; top: 80%; animation-delay: 4s; }
+
+@keyframes floatNotes {
+  0% { transform: translateY(0) scale(1) rotate(0deg);}
+  50% { transform: translateY(-40px) scale(1.2) rotate(10deg);}
+  100% { transform: translateY(0) scale(1) rotate(0deg);}
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 32px;
+  background: rgba(35,39,47,0.92);
+  color: #f7f7f7;
+  border-radius: 20px;
+  max-width: 700px;
+  margin: 120px auto 0 auto;
+  box-shadow: 0 6px 32px rgba(0,0,0,0.13);
+  border: 1px solid #ffd699;
+  font-family: 'Quicksand', 'Montserrat', Arial, Helvetica, sans-serif;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  animation: fadeIn 1.2s cubic-bezier(.42,0,.58,1);
+
+}
+
+@media (max-width: 700px) {
+  .home-container {
+    padding: 32px 10px;
+    max-width: 98vw;
+    margin-top: 90px; /* Also ensures space below navbar on mobile */
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(40px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+.home-logo {
+  height: 90px;
+  margin-bottom: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(255,179,102,0.10);
+  transition: transform 0.4s cubic-bezier(.42,0,.58,1);
+  animation: logoPop 1.1s cubic-bezier(.42,0,.58,1);
+}
+.home-logo:hover {
+  transform: scale(1.09) rotate(-4deg);
+}
+
+@keyframes logoPop {
+  0% { opacity: 0; transform: scale(0.7);}
+  80% { opacity: 1; transform: scale(1.08);}
+  100% { opacity: 1; transform: scale(1);}
+}
+
+.home-title {
+  font-size: 2.7rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  letter-spacing: 2.5px;
+  color: #ffd699;
+  text-shadow: 0 2px 8px rgba(255,179,102,0.10);
+  font-family: 'Quicksand', 'Montserrat', Arial, Helvetica, sans-serif;
+  animation: fadeInTitle 1.3s cubic-bezier(.42,0,.58,1);
+}
+
+@keyframes fadeInTitle {
+  from { opacity: 0; transform: scale(0.8);}
+  to { opacity: 1; transform: scale(1);}
+}
+
+.home-desc {
+  font-size: 1.22rem;
+  margin: 24px 0 18px 0;
+  color: #f7f7f7;
+  line-height: 1.6;
+  text-align: center;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  animation: fadeIn 1.5s cubic-bezier(.42,0,.58,1);
+}
+
+.home-features {
+  list-style: none;
+  padding: 0;
+  font-size: 1.12rem;
+  margin-bottom: 34px;
+  text-align: center;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(35,39,47,0.7);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(255,179,102,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  animation: fadeIn 1.7s cubic-bezier(.42,0,.58,1);
+}
+
+.home-features li {
+  margin-bottom: 14px;
+  padding-left: 12px;
+  position: relative;
+  font-weight: 500;
+  color: #ffd699;
+  text-align: left;
+  width: 100%;
+  max-width: 350px;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  animation: fadeIn 2s cubic-bezier(.42,0,.58,1);
+}
+
+.home-features li::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #ffe0b2;
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.home-action {
+  font-size: 1.15rem;
+  margin-top: 22px;
+  color: #ffd699;
+  font-weight: 600;
+  background: rgba(35,39,47,0.5);
+  padding: 12px 18px;
+  border-radius: 8px;
+  display: inline-block;
+  box-shadow: 0 2px 8px rgba(255,179,102,0.05);
+  text-align: center;
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  animation: fadeIn 2.2s cubic-bezier(.42,0,.58,1);
+}
+
+/* Lyrical images row */
+.lyrical-images-row {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin: 28px 0 10px 0;
+  flex-wrap: wrap;
+  z-index: 2;
+}
+
+.lyrical-img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(255,179,102,0.13);
+  border: 2px solid #ffd699;
+  transition: transform 0.3s;
+  background: #23272f;
+  animation: fadeIn 1.8s cubic-bezier(.42,0,.58,1);
+}
+.lyrical-img:hover {
+  transform: scale(1.13) rotate(-6deg);
+}
+
+/* Responsive styles */
+@media (max-width: 700px) {
+  .home-container {
+    padding: 32px 10px;
+    max-width: 98vw;
+    margin-top: 90px;
+  }
+  .home-features {
+    max-width: 90%;
+  }
+  .home-title {
+    font-size: 2rem;
+  }
+  .home-desc {
+    font-size: 1.1rem;
+  }
+  .home-action {
+    font-size: 1rem;
+    padding: 10px;
+  }
+  .lyrical-images-row {
+    gap: 10px;
+  }
+  .lyrical-img {
+    width: 50px;
+    height: 50px;
+  }
+}
