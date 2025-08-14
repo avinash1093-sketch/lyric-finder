@@ -29,7 +29,7 @@ const AddLyrics = () => {
     }
     setError('');
     try {
-      const response = await Axios.post(`http://localhost:3000/lyrics/addOne`, formData);
+      const response = await Axios.post(`https://lyricsmarket.vercel.app/lyrics/addOne`, formData);
       if (response.data.insertedLyrics
       ) {
         setFormData({

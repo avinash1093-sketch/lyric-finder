@@ -17,7 +17,7 @@ function LyricsFinder() {
     setError('');
     setLyrics('Loading...');
     try {
-      const response = await Axios.get(`http://localhost:3000/lyrics/${songName}/${artistName}`);
+      const response = await Axios.get(`https://lyricsmarket.vercel.app/lyrics/${songName}/${artistName}`);
       const data = response.data;
       console.log(data)
       if (data.lyrics) {
