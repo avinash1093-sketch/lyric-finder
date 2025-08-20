@@ -1,24 +1,26 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/navbar/Navbar';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import Navbar from "./components/navbar/Navbar";
 import LyricsFinder from "./components/lyricsFinder/LyricsFinder";
 import Home from "./components/home/Home";
 import AddLyrics from "./components/addLyrics/AddLyrics";
-import About from './components/about/About';
-import Contact from './components/contacts/Contact';
-import Footer from './components/footer/Foter';
-
+import Footer from "./components/footer/Foter";
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
 
 function App() {
+    let [loggedInUser, setLoggedInUser] = useState(null);
+    console.log(`App-LoggedInUSER========`, loggedInUser);
   return (
     <>
       <Router>
-        <Navbar /> 
+        <Navbar userEmail={loggedInUser} />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path='/lyrics' element={<LyricsFinder/>} />
-          <Route path='/addLyrics' element={<AddLyrics/>} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/" element={<Home userEmail={loggedInUser} />} />
+          <Route path="/lyrics" element={<LyricsFinder userEmail={loggedInUser}/>} />
+          <Route path="/addLyrics" element={<AddLyrics userEmail={loggedInUser} />} />
+          <Route path="/register" element={<Register setLoggedInUser={setLoggedInUser} />} />
+          <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser} />} />
         </Routes>
         <Footer />
       </Router>
