@@ -10,7 +10,7 @@ import { useLocation } from "react-router-dom";
 
 const Home = () => {
   const location = useLocation();
-  const { email } = location.state || {};
+  const { email, name } = location.state || {};
   let userEmail = email;
   return (
     <>
@@ -25,7 +25,7 @@ const Home = () => {
             <span className="note note5">🎤</span>
           </div>
           <div className="home-container">
-            <h1 className="home-title">Welcome to Lyric Market! {userEmail}</h1>
+            <h1 className="home-title">Welcome to Lyric Market! {name}</h1>
             <img src={logo} alt="Lyric Market Logo" className="home-logo" />
             <div className="lyrical-images-row">
               <img src={img1} alt="lyrical" className="lyrical-img" />

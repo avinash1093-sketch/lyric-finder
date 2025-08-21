@@ -23,15 +23,18 @@ const Register = ({ setLoggedInUser }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://lyricsmarket.vercel.app/api/auth/register", {
-        firstName,
-        lastName,
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "https://lyricsmarket.vercel.app/api/auth/register",
+        {
+          firstName,
+          lastName,
+          email,
+          password,
+        }
+      );
       setLoggedInUser(email);
       setMessage("Registered successfully"); // Set success message
-      navigate("/");
+      navigate("/", { state: { email: email, name: res.data.name } });
     } catch (err) {
       console.error(err.response.data);
       setMessage("Failed to register, User already exists"); // Set error message

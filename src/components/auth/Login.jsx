@@ -31,7 +31,7 @@ const Login = ({ setLoggedInUser }) => {
       );
       localStorage.setItem("token", res.data.token);
       setLoggedInUser(email);
-      navigate("/", { state: { email: email } });
+      navigate("/", { state: { email: email, name: res.data.data.name } });
       // Set success message
       setMessage("Logged in successfully");
     } catch (err) {

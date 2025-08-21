@@ -5,7 +5,6 @@ import "./LyricsFinder.css";
 import Navbar from "../navbar/Navbar";
 
 function LyricsFinder() {
-  console.log("LyricFinder==");
   const location = useLocation();
   const { email } = location.state || {};
   const [artistName, setArtistName] = useState("");
@@ -26,7 +25,6 @@ function LyricsFinder() {
         `https://lyricsmarket.vercel.app/lyrics/${songName}/${artistName}`
       );
       const data = response.data;
-      console.log(data);
       if (data.lyrics) {
         setLyrics(data.lyrics || "No lyrics found.");
       } else {

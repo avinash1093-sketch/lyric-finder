@@ -10,8 +10,6 @@ import Register from "./components/auth/Register";
 
 function App() {
   let [loggedInUser, setLoggedInUser] = useState(null);
-  console.log(loggedInUser);
-
   return (
     <>
       <Router>
