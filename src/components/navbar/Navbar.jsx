@@ -1,19 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.jpg";
 import "../navbar/Navbar.css";
 
 const Navbar = ({ userEmail }) => {
-  let [loggedInUser, setLoggedInUser] = useState(null);
-  if (userEmail) {
-    loggedInUser = userEmail;
-  }
+  const [loggedInUser, setLoggedInUser] = useState(null);
+  useEffect(() => {
+    setLoggedInUser(userEmail);
+  }, [userEmail]);
+
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const handleHome = (e) => {
+    e.preventDefault();
+    navigate("/", { state: { email: loggedInUser } });
+  };
+
+  const handleFindLyrics = (e) => {
+    e.preventDefault();
+    navigate("/lyrics", { state: { email: loggedInUser } });
+  };
+
+  const handleAddLyrics = (e) => {
+    e.preventDefault();
+    navigate("/addLyrics", { state: { email: loggedInUser } });
+  };
+
+  const handleLogout = (e) => {
+    e.preventDefault();
     localStorage.removeItem("token"); // Remove token from localStorage
     setLoggedInUser(null); // Set logged-in user to null
-    navigate('/')
+    navigate("/");
   };
 
   return (
@@ -32,13 +49,19 @@ const Navbar = ({ userEmail }) => {
           <div className="navbar-center">
             <ul className="nav-links">
               <li>
-                <a href="/">Home</a>
+                <a href="/" onClick={handleHome}>
+                  Home
+                </a>
               </li>
               <li>
-                <a href="/lyrics">Find Lyrics</a>
+                <a href="/lyrics" onClick={handleFindLyrics}>
+                  Find Lyrics
+                </a>
               </li>
               <li>
-                <a href="/addLyrics">Add Lyrics</a>
+                <a href="/addLyrics" onClick={handleAddLyrics}>
+                  Add Lyrics
+                </a>
               </li>
               <li>
                 <a href="/" onClick={handleLogout}>

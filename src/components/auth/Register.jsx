@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./style.css"; // Import CSS for styling
+import Navbar from "../navbar/Navbar";
 
 const Register = ({ setLoggedInUser }) => {
   const [formData, setFormData] = useState({
@@ -38,45 +39,48 @@ const Register = ({ setLoggedInUser }) => {
   };
 
   return (
-    <div className="auth-form">
-      <h2>Register</h2>
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          placeholder="First Name"
-          name="firstName"
-          value={firstName}
-          onChange={onChange}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Last Name"
-          name="lastName"
-          value={lastName}
-          onChange={onChange}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Email"
-          name="email"
-          value={email}
-          onChange={onChange}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          value={password}
-          onChange={onChange}
-          required
-        />
-        <button type="submit">Register</button>
-      </form>
-      <p className="message">{message}</p>
-    </div>
+    <>
+      <Navbar />
+      <div className="auth-form">
+        <h2>Register</h2>
+        <form onSubmit={onSubmit}>
+          <input
+            type="text"
+            placeholder="First Name"
+            name="firstName"
+            value={firstName}
+            onChange={onChange}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Last Name"
+            name="lastName"
+            value={lastName}
+            onChange={onChange}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Email"
+            name="email"
+            value={email}
+            onChange={onChange}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={onChange}
+            required
+          />
+          <button type="submit">Register</button>
+        </form>
+        <p className="message">{message}</p>
+      </div>
+    </>
   );
 };
 

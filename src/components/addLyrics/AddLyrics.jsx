@@ -1,8 +1,12 @@
 import Axios from "axios";
 import { useState } from "react";
 import "../addLyrics/AddLyrics.css";
+import Navbar from "../navbar/Navbar";
+import { useLocation } from "react-router-dom";
 
-const AddLyrics = () => {
+const AddLyrics = ({ userEmail }) => {
+  const location = useLocation();
+    const { email } = location.state || {};
   const [formData, setFormData] = useState({
     artistName: "",
     songName: "",
@@ -54,6 +58,7 @@ const AddLyrics = () => {
 
   return (
     <>
+      <Navbar userEmail={email} />
       <div className="lyrics-app">
         <h1>Add Lyrics to your List</h1>
         <form onSubmit={addLyrics}>

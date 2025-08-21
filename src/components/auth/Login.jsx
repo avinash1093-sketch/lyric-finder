@@ -2,7 +2,8 @@
 import { useState } from "react";
 import axios from "axios";
 import "./style.css"; // Import CSS for styling
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import Navbar from "../navbar/Navbar";
 
 const Login = ({ setLoggedInUser }) => {
   const [formData, setFormData] = useState({
@@ -21,13 +22,16 @@ const Login = ({ setLoggedInUser }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://lyricsmarket.vercel.app/api/auth/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "https://lyricsmarket.vercel.app/api/auth/login",
+        {
+          email,
+          password,
+        }
+      );
       localStorage.setItem("token", res.data.token);
       setLoggedInUser(email);
-      navigate('/')
+      navigate("/", { state: { email: email } });
       // Set success message
       setMessage("Logged in successfully");
     } catch (err) {
@@ -38,29 +42,32 @@ const Login = ({ setLoggedInUser }) => {
   };
 
   return (
-    <div className="auth-form">
-      <h2>Login</h2>
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          placeholder="Email"
-          name="email"
-          value={email}
-          onChange={onChange}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          value={password}
-          onChange={onChange}
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
-      <p className="message">{message}</p>
-    </div>
+    <>
+      <Navbar />
+      <div className="auth-form">
+        <h2>Login</h2>
+        <form onSubmit={onSubmit}>
+          <input
+            type="text"
+            placeholder="Email"
+            name="email"
+            value={email}
+            onChange={onChange}
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            value={password}
+            onChange={onChange}
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
+        <p className="message">{message}</p>
+      </div>
+    </>
   );
 };
 

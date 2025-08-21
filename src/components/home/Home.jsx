@@ -5,10 +5,16 @@ import img3 from "../../assets/lyrics3.jpg";
 import img4 from "../../assets/lyrics4.jpg";
 import img5 from "../../assets/lyrics5.jpg";
 import "./Home.css";
+import Navbar from "../navbar/Navbar";
+import { useLocation } from "react-router-dom";
 
-const Home = ({ userEmail }) => {
+const Home = () => {
+  const location = useLocation();
+  const { email } = location.state || {};
+  let userEmail = email;
   return (
     <>
+      <Navbar userEmail={userEmail} />
       {userEmail ? (
         <>
           <div className="home-bg-notes">

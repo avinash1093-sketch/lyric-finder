@@ -9,18 +9,24 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 
 function App() {
-    let [loggedInUser, setLoggedInUser] = useState(null);
-    console.log(`App-LoggedInUSER========`, loggedInUser);
+  let [loggedInUser, setLoggedInUser] = useState(null);
+  console.log(loggedInUser);
+
   return (
     <>
       <Router>
-        <Navbar userEmail={loggedInUser} />
         <Routes>
-          <Route path="/" element={<Home userEmail={loggedInUser} />} />
-          <Route path="/lyrics" element={<LyricsFinder userEmail={loggedInUser}/>} />
-          <Route path="/addLyrics" element={<AddLyrics userEmail={loggedInUser} />} />
-          <Route path="/register" element={<Register setLoggedInUser={setLoggedInUser} />} />
-          <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser} />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/lyrics" element={<LyricsFinder />} />
+          <Route path="/addLyrics" element={<AddLyrics />} />
+          <Route
+            path="/register"
+            element={<Register setLoggedInUser={setLoggedInUser} />}
+          />
+          <Route
+            path="/login"
+            element={<Login setLoggedInUser={setLoggedInUser} />}
+          />
         </Routes>
         <Footer />
       </Router>
