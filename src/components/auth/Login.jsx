@@ -5,7 +5,7 @@ import "./style.css"; // Import CSS for styling
 import { useNavigate } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
 
-const Login = ({ setLoggedInUser }) => {
+const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -30,7 +30,6 @@ const Login = ({ setLoggedInUser }) => {
         }
       );
       localStorage.setItem("token", res.data.token);
-      setLoggedInUser(email);
       navigate("/", { state: { email: email, name: res.data.data.name } });
       // Set success message
       setMessage("Logged in successfully");

@@ -4,7 +4,7 @@ import "../addLyrics/AddLyrics.css";
 import Navbar from "../navbar/Navbar";
 import { useLocation } from "react-router-dom";
 
-const AddLyrics = ({ userEmail }) => {
+const AddLyrics = () => {
   const location = useLocation();
     const { email } = location.state || {};
   const [formData, setFormData] = useState({

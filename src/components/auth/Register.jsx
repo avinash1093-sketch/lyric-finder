@@ -5,7 +5,7 @@ import axios from "axios";
 import "./style.css"; // Import CSS for styling
 import Navbar from "../navbar/Navbar";
 
-const Register = ({ setLoggedInUser }) => {
+const Register = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -32,7 +32,6 @@ const Register = ({ setLoggedInUser }) => {
           password,
         }
       );
-      setLoggedInUser(email);
       setMessage("Registered successfully"); // Set success message
       navigate("/", { state: { email: email, name: res.data.name } });
     } catch (err) {

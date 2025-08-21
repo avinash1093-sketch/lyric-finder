@@ -9,7 +9,6 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 
 function App() {
-  let [loggedInUser, setLoggedInUser] = useState(null);
   return (
     <>
       <Router>
@@ -17,14 +16,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/lyrics" element={<LyricsFinder />} />
           <Route path="/addLyrics" element={<AddLyrics />} />
-          <Route
-            path="/register"
-            element={<Register setLoggedInUser={setLoggedInUser} />}
-          />
-          <Route
-            path="/login"
-            element={<Login setLoggedInUser={setLoggedInUser} />}
-          />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         <Footer />
       </Router>
