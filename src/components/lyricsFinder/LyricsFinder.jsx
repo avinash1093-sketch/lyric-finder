@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Axios from "axios";
 import { useLocation } from "react-router-dom";
-import "./LyricsFinder.css";
+import "../lyricsFinder/LyricsFinder.css";
 import { PROD_URL, DEV_URL } from "../../config";
 import Navbar from "../navbar/Navbar";
 
