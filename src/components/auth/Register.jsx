@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./style.css"; // Import CSS for styling
 import Navbar from "../navbar/Navbar";
+import { DEV_URL, PROD_URL } from "../../config";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -23,15 +24,13 @@ const Register = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "https://lyricsmarket.vercel.app/api/auth/register",
-        {
-          firstName,
-          lastName,
-          email,
-          password,
-        }
-      );
+      const res = await axios.post(`${PROD_URL}/api/auth/register`, {
+        firstName,
+        lastName,
+        email,
+        password,
+      });
+      localStorage.setItem("token", res.data.token);
       setMessage("Registered successfully"); // Set success message
       navigate("/", { state: { email: email, name: res.data.name } });
     } catch (err) {

@@ -2,17 +2,17 @@ import Axios from "axios";
 import { useState } from "react";
 import "../addLyrics/AddLyrics.css";
 import Navbar from "../navbar/Navbar";
+import { DEV_URL, PROD_URL } from "../../config";
 import { useLocation } from "react-router-dom";
 
 const AddLyrics = () => {
   const location = useLocation();
-    const { email } = location.state || {};
+  const { email } = location.state || {};
   const [formData, setFormData] = useState({
     artistName: "",
     songName: "",
     lyrics: "",
   });
-
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
@@ -34,10 +34,11 @@ const AddLyrics = () => {
     }
     setError("");
     try {
-      const response = await Axios.post(
-        `https://lyricsmarket.vercel.app/lyrics/addOne`,
-        formData
-      );
+      let response = await Axios.post(`${PROD_URL}/lyrics/addOne`, formData, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      });
       if (response.data.insertedLyrics) {
         setFormData({
           artistName: response.data.insertedLyrics.artist,
@@ -96,7 +97,7 @@ const AddLyrics = () => {
             <div style={{ color: "red" }}>{error.errorMessage}</div>
           ) : (
             <pre>
-              <h2>Success!!</h2>
+              <h2>{formData.lyrics}</h2>
             </pre>
           )}
         </form>

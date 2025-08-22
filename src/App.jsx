@@ -1,6 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
-import Navbar from "./components/navbar/Navbar";
 import LyricsFinder from "./components/lyricsFinder/LyricsFinder";
 import Home from "./components/home/Home";
 import AddLyrics from "./components/addLyrics/AddLyrics";

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Axios from "axios";
 import { useLocation } from "react-router-dom";
 import "./LyricsFinder.css";
+import { PROD_URL, DEV_URL } from "../../config";
 import Navbar from "../navbar/Navbar";
 
 function LyricsFinder() {
@@ -22,7 +23,12 @@ function LyricsFinder() {
     setLyrics("Loading...");
     try {
       const response = await Axios.get(
-        `https://lyricsmarket.vercel.app/lyrics/${songName}/${artistName}`
+        `${PROD_URL}/lyrics/${songName}/${artistName}`,
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
       );
       const data = response.data;
       if (data.lyrics) {
