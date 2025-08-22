@@ -3,7 +3,7 @@ import img2 from "../../assets/lyric2.jpg";
 import img3 from "../../assets/lyrics3.jpg";
 import img4 from "../../assets/lyrics4.jpg";
 import img5 from "../../assets/lyrics5.jpg";
-import "../about/about.css";
+import "../about/About.css";
 import Navbar from "../navbar/Navbar";
 import { useLocation } from "react-router-dom";
 
