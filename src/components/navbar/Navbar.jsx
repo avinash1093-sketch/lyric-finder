@@ -16,6 +16,11 @@ const Navbar = ({ userEmail }) => {
     navigate("/", { state: { email: loggedInUser } });
   };
 
+  const handleAboutUs = (e) => {
+    e.preventDefault();
+    navigate("/about", { state: { email: loggedInUser } });
+  };
+
   const handleFindLyrics = (e) => {
     e.preventDefault();
     navigate("/lyrics", { state: { email: loggedInUser } });
@@ -54,6 +59,11 @@ const Navbar = ({ userEmail }) => {
                 </a>
               </li>
               <li>
+                <a href="/about" onClick={handleAboutUs}>
+                  About Us
+                </a>
+              </li>
+              <li>
                 <a href="/lyrics" onClick={handleFindLyrics}>
                   Find Lyrics
                 </a>
@@ -86,6 +96,9 @@ const Navbar = ({ userEmail }) => {
             <ul className="nav-links">
               <li>
                 <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/about">About Us</a>
               </li>
               <li>
                 <a href="/login">Login</a>

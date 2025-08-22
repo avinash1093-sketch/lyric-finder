@@ -5,6 +5,7 @@ import AddLyrics from "./components/addLyrics/AddLyrics";
 import Footer from "./components/footer/Foter";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import About from "./components/about/About";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
           <Route path="/lyrics" element={<LyricsFinder />} />
           <Route path="/addLyrics" element={<AddLyrics />} />
           <Route path="/register" element={<Register />} />
