@@ -2,8 +2,8 @@ import { useState } from "react";
 import Axios from "axios";
 import { useLocation } from "react-router-dom";
 import "../lyricsFinder/LyricsFinder.css";
-import { PROD_URL, DEV_URL } from "../../config";
 import Navbar from "../navbar/Navbar";
+import UrlDomain from "../../utils/UrlDomain";
 
 function LyricsFinder() {
   const location = useLocation();
@@ -23,7 +23,7 @@ function LyricsFinder() {
     setLyrics("Loading...");
     try {
       const response = await Axios.get(
-        `${PROD_URL}/lyrics/${songName}/${artistName}`,
+        `${UrlDomain()}/lyrics/${songName}/${artistName}`,
         {
           headers: {
             Authorization: localStorage.getItem("token"),

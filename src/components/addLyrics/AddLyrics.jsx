@@ -2,7 +2,7 @@ import Axios from "axios";
 import { useState } from "react";
 import "../addLyrics/AddLyrics.css";
 import Navbar from "../navbar/Navbar";
-import { DEV_URL, PROD_URL } from "../../config";
+import UrlDomain from "../../utils/UrlDomain";
 import { useLocation } from "react-router-dom";
 
 const AddLyrics = () => {
@@ -13,6 +13,7 @@ const AddLyrics = () => {
     songName: "",
     lyrics: "",
   });
+  const [getData, setData] = useState("");
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
@@ -34,11 +35,15 @@ const AddLyrics = () => {
     }
     setError("");
     try {
-      let response = await Axios.post(`${PROD_URL}/lyrics/addOne`, formData, {
-        headers: {
-          Authorization: localStorage.getItem("token"),
-        },
-      });
+      let response = await Axios.post(
+        `${UrlDomain()}/lyrics/addOne`,
+        formData,
+        {
+          headers: {
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      );
       if (response.data.insertedLyrics) {
         setFormData({
           artistName: response.data.insertedLyrics.artist,
@@ -71,6 +76,7 @@ const AddLyrics = () => {
               value={formData.artistName}
               placeholder="Artist Name"
               onChange={handleChange}
+              required
             />
             <input
               className="song"
@@ -79,15 +85,16 @@ const AddLyrics = () => {
               value={formData.songName}
               placeholder="Song Name"
               onChange={handleChange}
+              required
             />
-            <input
+            <textarea
               className="lyrics"
-              type="text"
-              name="lyrics"
               value={formData.lyrics}
-              placeholder="Add Lyric"
+              name="lyrics"
               onChange={handleChange}
-            />
+              placeholder="Add Lyrics"
+              required
+            ></textarea>
             <button className="btn" type="submit">
               Add Lyrics
             </button>
@@ -95,9 +102,9 @@ const AddLyrics = () => {
           <hr />
           {error ? (
             <div style={{ color: "red" }}>{error.errorMessage}</div>
-          ) : (
+          ) : getData === "" ? null : (
             <pre>
-              <h2>{formData.lyrics}</h2>
+              <h2>{setData(formData.lyrics)}</h2>
             </pre>
           )}
         </form>

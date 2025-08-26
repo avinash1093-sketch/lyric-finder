@@ -4,7 +4,7 @@ import axios from "axios";
 import "./style.css"; // Import CSS for styling
 import { useNavigate } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
-import { DEV_URL, PROD_URL } from "../../config";
+import UrlDomain from "../../utils/UrlDomain";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -23,12 +23,12 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${PROD_URL}/api/auth/login`, {
+      const res = await axios.post(`${UrlDomain()}/api/auth/login`, {
         email,
         password,
       });
       localStorage.setItem("token", res.data.token);
-      navigate("/", { state: { email: email, name: res.data.data.name } });
+      navigate("/", { state: { email: email, name: res.data.info.name } });
       // Set success message
       setMessage("Logged in successfully");
     } catch (err) {

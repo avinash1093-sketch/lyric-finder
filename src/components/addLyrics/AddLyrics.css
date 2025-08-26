@@ -28,7 +28,24 @@
   transition: border-color 0.2s;
 }
 
+.lyrics-form textarea {
+  width: 100%;
+  max-width: 320px;
+  padding: 12px;
+  font-size: 1.05rem;
+  border: 1px solid #ff6600;
+  border-radius: 6px;
+  background: #222;
+  color: #fff;
+  transition: border-color 0.2s;
+}
+
 .lyrics-form input:focus {
+  border-color: #ffa500;
+  outline: none;
+}
+
+.lyrics-form textarea:focus {
   border-color: #ffa500;
   outline: none;
 }

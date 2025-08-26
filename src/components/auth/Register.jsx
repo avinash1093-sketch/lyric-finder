@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./style.css"; // Import CSS for styling
 import Navbar from "../navbar/Navbar";
-import { DEV_URL, PROD_URL } from "../../config";
+import UrlDomain from "../../utils/UrlDomain";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -24,15 +24,19 @@ const Register = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${PROD_URL}/api/auth/register`, {
-        firstName,
-        lastName,
-        email,
-        password,
-      });
+      const res = await axios.post(
+        `${UrlDomain()}/api/auth/register`,
+        {
+          firstName,
+          lastName,
+          email,
+          password,
+        }
+      );
+      console.log(res);
       localStorage.setItem("token", res.data.token);
       setMessage("Registered successfully"); // Set success message
-      navigate("/", { state: { email: email, name: res.data.name } });
+      navigate("/", { state: { email: email, name: res.data.info.name } });
     } catch (err) {
       console.error(err.response.data);
       setMessage("Failed to register, User already exists"); // Set error message
