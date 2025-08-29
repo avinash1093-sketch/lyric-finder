@@ -24,15 +24,12 @@ const Register = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        `${UrlDomain()}/api/auth/register`,
-        {
-          firstName,
-          lastName,
-          email,
-          password,
-        }
-      );
+      const res = await axios.post(`${UrlDomain()}/api/auth/register`, {
+        firstName,
+        lastName,
+        email,
+        password,
+      });
       console.log(res);
       localStorage.setItem("token", res.data.token);
       setMessage("Registered successfully"); // Set success message
